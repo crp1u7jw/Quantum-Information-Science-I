@@ -1,4 +1,4 @@
-# Exploring Maxwell's Daemon
+# Exploring Maxwell's Daemon and Simulating It With Code
 Sep 19th, 2026 \
 Jaden Wang 
 
@@ -13,11 +13,12 @@ Isaac Chuang lists 3 potential reasons this could be impossible:
 - The measurement of the molecules disrupts the paradox
 - The need for intelligence disputes the claim
 
-Chuang then explain's the real reason (Szilard's engine and Laurderer's exorcism of Maxwell's daemon) in the following module.
+Chuang then explain's the real reason (Szilard's engine and Lauderer's exorcism of Maxwell's daemon) in the following module.
 
 ### My Implementation
 
 To simulate this, I have created a physics-based simulation by scratch, displaying the particles using pygame. In the simulation, you are the daemon, and your goal is to fully separate the screen into hot particles on one side and cold particles on the other. 
 
-With this, I have turned Maxwell's daemon into a fully functional game you can play (since I have always loved designing games). The particles are initialized with random speeds, directions, temperatures, and locations; and they bounce off walls with a random offset. Can you do it? [It's not easy being Maxwell's daemon!]
+With this, I have turned Maxwell's daemon into a fully functional game you can play (since I have always loved designing games). The particles are initialized with random speeds, directions, temperatures, and locations; and they bounce off walls with a random offset. Can you do it? (It's not easy being Maxwell's daemon!)
 
+I made this file because I wanted to get used to making physics simulations. Simulation coding is a considerably different experience from other types of coding like game design and data processing. From my experience, it is centered on creating clean, modular code that withstands the stress test of complex physics. This will help me a lot as I begin coding quantum mechanics simulations in this course.

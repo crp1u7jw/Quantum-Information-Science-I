@@ -2,10 +2,8 @@ import numpy as np
 import random
 
 # This function checks whether a specific configuration tensor for a 3SAT instance is solvable. 
-# The technique I have used to do so is detailed in the README file.
-
+# The technique I have used to do so is detailed in the README file and scratch notes.
 def check_3SAT(T):
-
     X = np.ones([2] * n)
     null_vector = np.array([-1, -1, -1])
 
@@ -32,10 +30,10 @@ for i in range(m):
     for j in range(3):
         map[i, j] = random.choice(available_variables)
         available_variables.remove(map[i, j])
+
         gates[i, j] = random.choice([1, -1])
 
-# Convert mapping into a configuration tensor for processing
-# and a system tensor for display
+# Convert mapping into a configuration tensor for processing and a system tensor for display
 config_tensor = np.zeros((m, n, 3))
 system = np.empty((m, 3), dtype=object)
 

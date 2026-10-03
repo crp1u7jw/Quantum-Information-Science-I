@@ -9,7 +9,7 @@ from typing import Literal
 
 side_of_hot_molecules = "RIGHT" # You can also set this to "LEFT"
 
-faster_particles = True
+faster_particles = False
 thinner_wall_display = False
 smaller_particles_display = False
 
@@ -17,6 +17,7 @@ temperature_dependant_particle_speeds = False
 even_hot_and_cold_distribution = False
 
 door_size_string = "Normal" # "Normal", "Small", "Large", "Full Size"
+particle_amount = 20 # 20, 10
 # --------------------------------------------------
 
 class Molecule:
@@ -152,8 +153,6 @@ class SlidingDoor(Wall):
 
 # Start game
 opposite_side = {"LEFT": "RIGHT", "RIGHT": "LEFT"}
-input(f"\nYour goal is to get the hot particles to the {side_of_hot_molecules.lower()} and the cold particles to the {opposite_side[side_of_hot_molecules].lower()}. Press 'c' to operate the sliding door. Ready? ")
-print()
 
 # Screen dimensions
 dimensions = left, right, up, down = (0, 1280, 0, 720)
@@ -171,7 +170,7 @@ text_rect = text_surface.get_rect()
 text_rect.center = center
 
 # Runtime variables
-amount = 20
+amount = particle_amount
 mean_speed = 4
 if faster_particles:
     mean_speed = 5
@@ -181,8 +180,8 @@ if not even_hot_and_cold_distribution:
             random.uniform(0, 2 * math.pi), 
             random.gauss(mean_speed, 1), 
             random.choice(["HOT", "COLD"]), 
-            random.randint(left + 1, right),
-            random.randint(up + 1, down),
+            random.randint(left + 51, right - 50),
+            random.randint(up + 51, down - 50),
         ) for _ in range(amount)
     ]
 else:
@@ -191,8 +190,8 @@ else:
             random.uniform(0, 2 * math.pi), 
             random.gauss(mean_speed, 1), 
             "COLD", 
-            random.randint(left + 1, right),
-            random.randint(up + 1, down),
+            random.randint(left + 51, right - 50),
+            random.randint(up + 51, down - 50),
         ) for _ in range(amount // 2)
     ]
     hot_molecules = [
@@ -200,8 +199,8 @@ else:
             random.uniform(0, 2 * math.pi), 
             random.gauss(mean_speed, 1), 
             "HOT", 
-            random.randint(left + 1, right),
-            random.randint(up + 1, down),
+            random.randint(left + 51, right - 50),
+            random.randint(up + 51, down - 50),
         ) for _ in range(amount // 2)
     ]
     molecules = cold_molecules + hot_molecules
@@ -230,6 +229,9 @@ walls.append(sliding_door)
 running = True
 has_won = False
 
+input(f"\nYour goal is to get the hot particles to the {side_of_hot_molecules.lower()} and the cold particles to the {opposite_side[side_of_hot_molecules].lower()}. Press 'c' to operate the sliding door. Ready? ")
+print()
+
 while running:
  
     # Event handling
@@ -252,19 +254,19 @@ while running:
 
     perfectly_split = True
     for molecule in molecules:
-        if side_of_hot_molecules.upper():
+        if side_of_hot_molecules == "RIGHT":
             if molecule.temp == "HOT":
-                if molecule.x > sliding_door.x:
+                if molecule.x < sliding_door.x:
                     perfectly_split = False
             else:
-                if molecule.x < sliding_door.x:
+                if molecule.x > sliding_door.x:
                     perfectly_split = False
         else:
             if molecule.temp == "HOT":
-                if molecule.x < sliding_door.x:
+                if molecule.x > sliding_door.x:
                     perfectly_split = False
             else:
-                if molecule.x > sliding_door.x:
+                if molecule.x < sliding_door.x:
                     perfectly_split = False
 
     if perfectly_split:
