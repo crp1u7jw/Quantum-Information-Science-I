@@ -38,7 +38,6 @@ class Qubit:
             return 1
         return self._ket[1] / self._ket[0]
 
-
     # String representations
 
     @property
@@ -155,11 +154,11 @@ class T(QuantumGate):
 UP = Qubit(1, 0)
 DOWN = Qubit(0, 1)
 
-RIGHT = (UP + DOWN) / (2**0.5)
-LEFT = (UP - DOWN) / (2**0.5)
+RIGHT = (UP + DOWN) * (1 / 2**0.5)
+LEFT = (UP - DOWN) * (1 / 2**0.5)
 
-OUT = (UP + 1j * DOWN) / (2**0.5)
-IN = (UP - 1j * DOWN) / (2**0.5)
+OUT = (UP + 1j * DOWN) * (1 / 2**0.5)
+IN = (UP - 1j * DOWN) * (1 / 2**0.5)
 
 def example_gates(UP, RIGHT, OUT):
 
